@@ -15,7 +15,9 @@ public class StateManager {
     public StateManager() {
         gameStates = new ArrayList<GameState>();
         currentState = menuState;
+        java.awt.Graphics2D  g = null;
         gameStates.add(new MyMenu(this));
+        gameStates.add(new PlayState(this));
 
     }
     public void setState(int s) {
@@ -31,9 +33,7 @@ public class StateManager {
         gameStates.get(currentState).draw(g);
     }
 
-    public void keyPressed(int key) {
-        gameStates.get(currentState).keyPressed(key);
-    }
+    public void keyPressed(int key) { gameStates.get(currentState).keyPressed(key); }
 
     public void keyReleased(int key) {
         gameStates.get(currentState).keyReleased(key);

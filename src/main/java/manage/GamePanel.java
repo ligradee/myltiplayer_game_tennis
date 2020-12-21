@@ -9,21 +9,17 @@ import java.awt.image.BufferedImage;
 public class GamePanel extends JPanel
         implements Runnable, KeyListener {
 
-    // dimensions
     public static final int width = 600;
     public static final int height = 700;
 
-    // game thread
     private Thread thread;
     private boolean running;
     private int FPS = 60;
     private long targetTime = 1000 / FPS;
 
-    // image
     private BufferedImage image;
     private Graphics2D g;
 
-    // game state manager
     private StateManager sManager;
 
     public GamePanel() {
