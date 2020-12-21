@@ -36,10 +36,7 @@ public class PlayState extends GameState {
 
     public void init() {}
 
-    public void update() {
-    }
-
-
+    public void update() {}
 
     public void draw(Graphics2D g) {
         bg.draw(g);
@@ -59,6 +56,7 @@ public class PlayState extends GameState {
 
     private void select() {
         if(currentState == 0) {
+
         }
         if(currentState == 1) {
 
@@ -71,23 +69,23 @@ public class PlayState extends GameState {
         }
     }
 
-    public void keyPressed(int k) {
-        if(k == KeyEvent.VK_ENTER){
+    public void keyPressed(int key) {
+        if(key == KeyEvent.VK_ENTER){
             select();
         }
-        if(k == KeyEvent.VK_UP) {
+        if(key == KeyEvent.VK_UP) {
             currentState--;
             if(currentState == -1) {
                 currentState = variants.length - 1;
             }
         }
-        if(k == KeyEvent.VK_DOWN) {
+        if(key == KeyEvent.VK_DOWN) {
             currentState++;
             if(currentState == variants.length) {
                 currentState = 0;
             }
         }
     }
-    public void keyReleased(int k) {}
+    public void keyReleased(int key) {}
 
 }
