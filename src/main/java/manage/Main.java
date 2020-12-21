@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         JFrame menuWindow = new JFrame("Funny Tennis");
-        menuWindow.setContentPane(new MyMenu());
+        menuWindow.setContentPane(new GamePanel());
         menuWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         menuWindow.setResizable(false);
         menuWindow.pack();

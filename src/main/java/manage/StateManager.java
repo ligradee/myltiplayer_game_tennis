@@ -15,18 +15,12 @@ public class StateManager {
     public StateManager() {
         gameStates = new ArrayList<GameState>();
         currentState = menuState;
-        gameStates.add(new MenuState(this));
+        gameStates.add(new MyMenu(this));
 
     }
-
     public void setState(int s) {
         currentState = s;
-        gameStates.get(currentState).init(0);
-    }
-
-    public void setState(int s, int diff, String filename) {
-        currentState = s;
-        gameStates.get(currentState).init(diff, filename);
+        gameStates.get(currentState).init();
     }
 
     public void update() {

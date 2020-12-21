@@ -4,12 +4,11 @@ import manage.*;
 
 public abstract class GameState {
     protected StateManager sManager;
-    public abstract void init(int flag);
-    public abstract void init(int flag, String file);
-    public abstract void draw(Graphics2D g);
+    public abstract void init();
     public abstract void update();
-    public abstract void keyPressed(int key);
-    public abstract void keyReleased(int key);
+    public abstract void draw(java.awt.Graphics2D g);
+    public abstract void keyPressed(int k);
+    public abstract void keyReleased(int k);
 }
 
 
