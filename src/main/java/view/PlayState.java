@@ -11,6 +11,7 @@ public class PlayState extends GameState {
     private Font font;
     private int currentState = 0;
 
+
     private String[] variants = {
             "New game",
             "Join the game",
@@ -62,7 +63,7 @@ public class PlayState extends GameState {
 
         }
         if(currentState == 2) {
-
+            sManager.setState(StateManager.playWithBotState);
         }
         if(currentState == 3) {
             sManager.setState(StateManager.menuState);
