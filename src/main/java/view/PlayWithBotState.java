@@ -13,7 +13,8 @@ public class PlayWithBotState extends GameState  {
     private Ball ball;
 
     private int x1, y1;
-    private int score = 0;
+    private int score1 = 0;
+    private int score2 = 0;
 
 
     public PlayWithBotState(StateManager sManager) {
@@ -44,6 +45,21 @@ public class PlayWithBotState extends GameState  {
         person.getModel().set();
         bot.getModel().set();
         ball.getModel().set(person.getModel().getX(), person.getModel().getY());
+        if (bot.getModel().hitBox.intersects(ball.getModel().hitBoxBall) == true){
+            ball.getModel().ySpeed = ball.getModel().ySpeed * -1;
+        }
+        if (ball.getModel().getY() > 555){
+            score1++;
+        }
+        if (ball.getModel().getY() < 0){
+            score2++;
+        }
+        if (person.getModel().hitBoxPlayer.intersects(ball.getModel().hitBoxBall) == true){
+            if (ball.getModel().flag == true){
+                ball.getModel().ySpeed = ball.getModel().ySpeed * -1;
+            }
+        }
+
     }
 
 
@@ -53,6 +69,10 @@ public class PlayWithBotState extends GameState  {
         person.draw(g);
         bot.draw(g);
         ball.draw(g);
+        String scoreBot = String.valueOf(score1) + " : " +  String.valueOf(score2);
+        String scorePlayer = String.valueOf(score2) + " : " +  String.valueOf(score1);
+        g.drawString(scoreBot, 270, 30);
+        g.drawString(scorePlayer, 270, 660);
     }
 
     @Override
@@ -61,25 +81,25 @@ public class PlayWithBotState extends GameState  {
             sManager.setState(StateManager.menuState);
         }
         if(key == KeyEvent.VK_RIGHT) {
-            person.getModel().xSpeed = 2;
-            bot.getModel().xSpeed = -2;
+            person.getModel().xSpeed = 3;
+            bot.getModel().xSpeed = -3;
             if (ball.getModel().flag == false){
-                ball.getModel().xSpeed = 2;
+                ball.getModel().xSpeed = 3;
             }
 
         }
         if(key == KeyEvent.VK_LEFT) {
-            person.getModel().xSpeed = -2;
-            bot.getModel().xSpeed = 2;
+            person.getModel().xSpeed = -3;
+            bot.getModel().xSpeed = 3;
             if (ball.getModel().flag == false){
-                ball.getModel().xSpeed = -2;
+                ball.getModel().xSpeed = -3;
             }
 
         }
         if(key == KeyEvent.VK_SPACE) {
             ball.getModel().flag = true;
             ball.getModel().ySpeed = -5;
-            ball.getModel().xSpeed = 2;
+            ball.getModel().xSpeed = 3;
         }
     }
 

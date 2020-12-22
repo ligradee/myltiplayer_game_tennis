@@ -2,17 +2,15 @@ package model;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.BitSet;
 
 public class PlayerModel {
 
     public int x, y, width = 150, height = 100;
     public int xSpeed = 0;
-    private Rectangle hitBox;
+    public Rectangle hitBoxPlayer;
 
     public PlayerModel(int num){
-        this.width = width;
-        this.height = height;
-
         if (num == 1) {
             this.y = 550;
         }
@@ -21,7 +19,7 @@ public class PlayerModel {
         }
         this.x = 225;
 
-        hitBox = new Rectangle(this.x, this.y, width, height);
+        hitBoxPlayer = new Rectangle(this.x, this.y, width, height);
 
 
     }
@@ -38,11 +36,11 @@ public class PlayerModel {
     public void set(){
         if ((xSpeed > 0) & (x < 425)) {
             x += xSpeed;
-            hitBox.x += xSpeed;
+            hitBoxPlayer.x += xSpeed;
         }
         if ((xSpeed < 0) & (x > 24)) {
             x += xSpeed;
-            hitBox.x += xSpeed;
+            hitBoxPlayer.x += xSpeed;
         }
     }
 }

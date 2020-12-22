@@ -2,13 +2,14 @@ package model;
 import view.Bot;
 
 import java.awt.*;
+import java.util.BitSet;
 
 
 public class BotModel {
 
-    public int x, y, width = 150, height = 100;
+    public int x, y, width = 150, height = 47;
     public int xSpeed = 0;
-    private Rectangle hitBox;
+    public Rectangle hitBox;
 
     public BotModel(int num){
         this.y = 0;
