@@ -27,15 +27,18 @@ public class BotModel {
     }
 
     public void set(){
-        if ((xSpeed > 0) & (x < 425)) {
+        System.out.println(x);
+        if ((x < 425)  & (x > 24)) {
             x += xSpeed;
             hitBox.x += xSpeed;
 
         }
-        if ((xSpeed < 0) & (x > 24)) {
+        if ((x < 25) || (x > 424)) {
+            xSpeed = xSpeed * -1;
             x += xSpeed;
             hitBox.x += xSpeed;
         }
+
     }
 
 }

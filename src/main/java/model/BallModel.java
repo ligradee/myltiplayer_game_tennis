@@ -44,8 +44,8 @@ public class BallModel {
 
         }
         if ((x == 499) || (x < 25)){
-            x = x - xSpeed;
-            System.out.println(x);
+            xSpeed = xSpeed * -1;
+            x = x + xSpeed;
             hitBoxBall.x = x;
         }
         if ((xSpeed < 0) & (x > 24)) {

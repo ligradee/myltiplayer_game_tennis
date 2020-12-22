@@ -48,17 +48,26 @@ public class PlayWithBotState extends GameState  {
         if (bot.getModel().hitBox.intersects(ball.getModel().hitBoxBall) == true){
             ball.getModel().ySpeed = ball.getModel().ySpeed * -1;
         }
-        if (ball.getModel().getY() > 555){
-            score1++;
-        }
-        if (ball.getModel().getY() < 0){
-            score2++;
-        }
         if (person.getModel().hitBoxPlayer.intersects(ball.getModel().hitBoxBall) == true){
             if (ball.getModel().flag == true){
                 ball.getModel().ySpeed = ball.getModel().ySpeed * -1;
             }
         }
+        if (ball.getModel().getY() > 555){
+            score1++;
+            ball.getModel().set(bot.getModel().getX(), bot.getModel().getY()+70);
+            ball.getModel().flag = true;
+            ball.getModel().ySpeed = -5;
+            ball.getModel().xSpeed = 3;
+        }
+        if (ball.getModel().getY() < 0){
+            score2++;
+        }
+        if (ball.getModel().ySpeed < 0){
+            bot.getModel().xSpeed = ball.getModel().xSpeed;
+        }
+
+
 
     }
 
@@ -78,11 +87,10 @@ public class PlayWithBotState extends GameState  {
     @Override
     public void keyPressed(int key) {
         if(key == KeyEvent.VK_ESCAPE){
-            sManager.setState(StateManager.menuState);
+            sManager.setState(StateManager.pauseState);
         }
         if(key == KeyEvent.VK_RIGHT) {
             person.getModel().xSpeed = 3;
-            bot.getModel().xSpeed = -3;
             if (ball.getModel().flag == false){
                 ball.getModel().xSpeed = 3;
             }
@@ -90,7 +98,6 @@ public class PlayWithBotState extends GameState  {
         }
         if(key == KeyEvent.VK_LEFT) {
             person.getModel().xSpeed = -3;
-            bot.getModel().xSpeed = 3;
             if (ball.getModel().flag == false){
                 ball.getModel().xSpeed = -3;
             }
