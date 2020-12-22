@@ -43,7 +43,7 @@ public class PlayWithBotState extends GameState  {
     public void update() {
         person.getModel().set();
         bot.getModel().set();
-        ball.getModel().set();
+        ball.getModel().set(person.getModel().getX(), person.getModel().getY());
     }
 
 
@@ -57,17 +57,29 @@ public class PlayWithBotState extends GameState  {
 
     @Override
     public void keyPressed(int key) {
-        if(key == KeyEvent.VK_ENTER){
-
+        if(key == KeyEvent.VK_ESCAPE){
+            sManager.setState(StateManager.menuState);
         }
         if(key == KeyEvent.VK_RIGHT) {
             person.getModel().xSpeed = 2;
             bot.getModel().xSpeed = -2;
-        }
+            if (ball.getModel().flag == false){
+                ball.getModel().xSpeed = 2;
+            }
 
+        }
         if(key == KeyEvent.VK_LEFT) {
             person.getModel().xSpeed = -2;
             bot.getModel().xSpeed = 2;
+            if (ball.getModel().flag == false){
+                ball.getModel().xSpeed = -2;
+            }
+
+        }
+        if(key == KeyEvent.VK_SPACE) {
+            ball.getModel().flag = true;
+            ball.getModel().ySpeed = -5;
+            ball.getModel().xSpeed = 2;
         }
     }
 
@@ -77,6 +89,10 @@ public class PlayWithBotState extends GameState  {
         if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_LEFT) {
             person.getModel().xSpeed = 0;
             bot.getModel().xSpeed = 0;
+            if (ball.getModel().flag == false){
+                ball.getModel().xSpeed = 0;
+            }
+
         }
     }
 }
