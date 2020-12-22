@@ -10,6 +10,7 @@ public class PlayWithBotState extends GameState  {
     private Background bg;
     private PlayerState person;
     private Bot bot;
+    private Ball ball;
 
     private int x1, y1;
     private int score = 0;
@@ -19,8 +20,10 @@ public class PlayWithBotState extends GameState  {
         this.sManager = sManager;
         person = new PlayerState(1);
         bot = new Bot();
+
         x1 = person.getModel().getX();
         y1 = person.getModel().getY();
+        ball = new Ball(x1, y1);
 
         try {
             bg = new Background("/court.png");
@@ -40,6 +43,7 @@ public class PlayWithBotState extends GameState  {
     public void update() {
         person.getModel().set();
         bot.getModel().set();
+        ball.getModel().set();
     }
 
 
@@ -48,6 +52,7 @@ public class PlayWithBotState extends GameState  {
         bg.draw(g);
         person.draw(g);
         bot.draw(g);
+        ball.draw(g);
     }
 
     @Override

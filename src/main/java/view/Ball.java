@@ -11,7 +11,7 @@ public class Ball {
     private BufferedImage ball;
     private BallModel model;
 
-    public Ball() {
+    public Ball(int x, int y) {
         try {
 
             ball = ImageIO.read(getClass().getResourceAsStream("/ball.png"));
@@ -20,7 +20,7 @@ public class Ball {
         catch(Exception e) {
             e.printStackTrace();
         }
-        model = new BallModel();
+        model = new BallModel(x, y);
 
     }
 
@@ -29,6 +29,6 @@ public class Ball {
     }
 
     public void draw(Graphics2D g) {
-        g.drawImage(ball, model.getX(), model.getY(), 150, 100, null);
+        g.drawImage(ball, model.getX(), model.getY(), 70, 70, null);
     }
 }

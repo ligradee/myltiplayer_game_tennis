@@ -34,6 +34,7 @@ public class PlayerModel {
         return y;
     }
 
+
     public void set(){
         if ((xSpeed > 0) & (x < 425)) {
             x += xSpeed;
