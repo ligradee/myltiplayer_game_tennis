@@ -1,5 +1,6 @@
 package view;
 
+import manage.GameState;
 import manage.StateManager;
 
 import java.awt.*;
@@ -57,9 +58,13 @@ public class PlayState extends GameState {
 
     private void select() {
         if(currentState == 0) {
+            sManager.game = 1;
+            sManager.setState(StateManager.playGameState);
 
         }
         if(currentState == 1) {
+            sManager.game = 0;
+            sManager.setState(StateManager.playGameState);
 
         }
         if(currentState == 2) {

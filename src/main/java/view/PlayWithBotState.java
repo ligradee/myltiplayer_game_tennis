@@ -1,12 +1,11 @@
 package view;
+import manage.GameState;
 import manage.StateManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.security.Key;
-import java.util.ArrayList;
 
-public class PlayWithBotState extends GameState  {
+public class PlayWithBotState extends GameState {
     private Background bg;
     private PlayerState person;
     private Bot bot;
@@ -54,7 +53,7 @@ public class PlayWithBotState extends GameState  {
                 ball.getModel().ySpeed = ball.getModel().ySpeed * -1;
             }
         }
-        if (ball.getModel().getY() < 5){
+        if (ball.getModel().getY() < 7){
             System.out.println("meow");
             if (ball.getModel().getY() == yCheck){
                 ball.getModel().ySpeed *=  -1;

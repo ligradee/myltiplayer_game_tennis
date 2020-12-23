@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.BitSet;
 
-public class PlayerModel {
+public class PlayerModel{
 
     public int x, y, width = 150, height = 100;
     public int xSpeed = 0;

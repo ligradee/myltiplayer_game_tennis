@@ -1,10 +1,11 @@
 package view;
+import manage.GameState;
 import manage.StateManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class PauseState extends GameState  {
+public class PauseState extends GameState {
     private Background bg;
     private Font font;
     private int currentState = 0;
@@ -12,14 +13,14 @@ public class PauseState extends GameState  {
     private String[] variants = {
             "Resume",
             "Finish Game",
-            "Info",
+            "Info"
 
     };
     public PauseState(StateManager sManager) {
 
         this.sManager = sManager;
         try {
-            //bg = new Background("/pause.png");
+            bg = new Background("/pause.png");
             font = new Font("Uber Move", Font.BOLD , 30);
         }
         catch(Exception e) {
@@ -40,9 +41,8 @@ public class PauseState extends GameState  {
 
     @Override
     public void draw(Graphics2D g) {
-        //bg.draw(g);
+        bg.draw(g);
         g.setFont(font);
-        g.drawString("PAUSE", 220, 200);
         for(int i = 0; i < variants.length; i++) {
             if(i == currentState) {
                 g.setColor(Color.BLUE);
@@ -58,10 +58,10 @@ public class PauseState extends GameState  {
         if(currentState == 0) {
             sManager.setState(StateManager.playWithBotState);
         }
-        if(currentState == 2) {
+        if(currentState == 1) {
             sManager.setState(StateManager.menuState);
         }
-        if(currentState == 3) {
+        if(currentState == 2) {
             this.sManager.setState(StateManager.infoState);
         }
     }

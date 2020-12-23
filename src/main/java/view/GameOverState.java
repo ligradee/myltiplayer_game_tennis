@@ -1,5 +1,6 @@
 package view;
 
+import manage.GameState;
 import manage.StateManager;
 
 import java.awt.*;

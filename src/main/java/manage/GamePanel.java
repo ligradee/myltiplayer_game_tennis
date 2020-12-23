@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class GamePanel extends JPanel
         implements Runnable, KeyListener {
@@ -39,7 +40,7 @@ public class GamePanel extends JPanel
         }
     }
 
-    private void init() {
+    private void init() throws IOException {
 
         image = new BufferedImage(
                 width, height,
@@ -54,7 +55,11 @@ public class GamePanel extends JPanel
     }
 
     public void run() {
-        init();
+        try {
+            init();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         long start;
         long elapsed;

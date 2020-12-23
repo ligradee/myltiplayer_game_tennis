@@ -1,8 +1,8 @@
 package view;
+import manage.GameState;
 import manage.StateManager;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class InfoState extends GameState {
 

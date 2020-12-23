@@ -1,11 +1,13 @@
 package manage;
 import  view.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class StateManager {
     private final ArrayList<GameState> gameStates;
     private int currentState;
+    public  int game = 0;
 
     public static final int menuState = 0;
     public static final int playState = 1;
@@ -13,8 +15,10 @@ public class StateManager {
     public static final int playWithBotState = 3;
     public static final int pauseState = 4;
     public static final int gameOverState = 5;
+    public static final int newGameState = 6;
+    public static final int playGameState = 6;
 
-    public StateManager() {
+    public StateManager() throws IOException {
         gameStates = new ArrayList<GameState>();
         currentState = menuState;
         java.awt.Graphics2D  g = null;
@@ -24,7 +28,7 @@ public class StateManager {
         gameStates.add(new PlayWithBotState(this));
         gameStates.add(new PauseState(this));
         gameStates.add(new GameOverState(this));
-
+        gameStates.add(new PlayWithRealPlayer(this));
     }
     public void setState(int s) {
         currentState = s;

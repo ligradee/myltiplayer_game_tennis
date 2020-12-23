@@ -5,7 +5,7 @@ import view.PlayerState;
 import java.awt.*;
 import java.util.Random;
 
-public class BallModel {
+public class BallModel{
 
     private int score1;
     private int score2;
@@ -38,8 +38,6 @@ public class BallModel {
     }
 
     public void set(int x1, int y1) {
-        System.out.println(x);
-        System.out.println(y);
         if ((xSpeed > 0) & (x < 500)) {
             x += xSpeed;
             hitBoxBall.x += xSpeed;
