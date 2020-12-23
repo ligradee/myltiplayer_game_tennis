@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 public class GameOverState extends GameState {
     private Background bg;
     private Font font;
+    public  int score1, score2;
     private int currentState = 0;
     private String[] variants = {
             "Revenge",
@@ -58,11 +59,8 @@ public class GameOverState extends GameState {
         if(currentState == 0) {
             sManager.setState(StateManager.playWithBotState);
         }
-        if(currentState == 2) {
+        if(currentState == 1) {
             sManager.setState(StateManager.menuState);
-        }
-        if(currentState == 3) {
-            this.sManager.setState(StateManager.infoState);
         }
     }
 
