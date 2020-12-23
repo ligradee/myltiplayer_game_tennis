@@ -75,6 +75,10 @@ public class GameServer {
                         sendData = "newTable".getBytes();
                         server.message = "";
                     }
+                    if(server.message.contains("@add")){
+                        System.out.println("Player added to table");
+
+                    }
 
                     DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
                     try {

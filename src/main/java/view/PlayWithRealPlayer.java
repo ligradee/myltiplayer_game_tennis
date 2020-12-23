@@ -45,7 +45,6 @@ public class PlayWithRealPlayer extends GameState {
         tableOptions.clear();
         freeTables = "";
         while(!freeTables.contains("Table")) {
-            System.out.println("meow");
             client.send("@getTables");
             freeTables = client.receivedMessage;
         }
@@ -60,6 +59,7 @@ public class PlayWithRealPlayer extends GameState {
     }
 
     public void update() {
+        player.getModel().set();
         if(client.receivedMessage.trim().equals("newTable"))
             init();
         sManager.setState(StateManager.playGameState);
@@ -72,10 +72,7 @@ public class PlayWithRealPlayer extends GameState {
     }
 
     public void select(){
-        if(currentChoice == tableOptions.size()-1) {
-            client.send("@new");
-            init();
-        }
+
     }
 
     public void setFlag(int flag){
@@ -86,25 +83,32 @@ public class PlayWithRealPlayer extends GameState {
         }
     }
 
-    public void keyPressed(int k) {
-        if(k == KeyEvent.VK_ESCAPE){
-            sManager.setState(StateManager.menuState);
+    public void keyPressed(int key) {
+        if(key == KeyEvent.VK_ESCAPE){
+            sManager.setState(StateManager.pauseState);
         }
-        if(k == KeyEvent.VK_ENTER)
+        if(key == KeyEvent.VK_RIGHT) {
+            player.getModel().xSpeed = 3;
+//            if (ball.getModel().flag == false){
+//                ball.getModel().xSpeed = 3;
+//            }
+
+        }
+        if(key == KeyEvent.VK_LEFT) {
+            player.getModel().xSpeed = -3;
+//            if (ball.getModel().flag == false){
+//                ball.getModel().xSpeed = -3;
+//            }
+
+        }
+        if(key == KeyEvent.VK_ENTER)
             select();
-        if(k == KeyEvent.VK_UP) {
-            currentChoice--;
-            if(currentChoice == -1)
-                currentChoice = tableOptions.size() - 1;
-        }
-        if(k == KeyEvent.VK_DOWN) {
-            currentChoice++;
-            if(currentChoice == tableOptions.size())
-                currentChoice = 0;
-        }
+
     }
 
-    public void keyReleased(int k) {
-
+    public void keyReleased(int key) {
+        if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_LEFT) {
+            player.getModel().xSpeed = 0;
+        }
     }
 }
