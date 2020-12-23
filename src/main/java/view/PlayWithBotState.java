@@ -15,6 +15,7 @@ public class PlayWithBotState extends GameState  {
     private int x1, y1;
     private int score1 = 0;
     private int score2 = 0;
+    private int yCheck = 0;
 
 
     public PlayWithBotState(StateManager sManager) {
@@ -53,6 +54,19 @@ public class PlayWithBotState extends GameState  {
                 ball.getModel().ySpeed = ball.getModel().ySpeed * -1;
             }
         }
+        if (ball.getModel().getY() < 5){
+            System.out.println("meow");
+            if (ball.getModel().getY() == yCheck){
+                ball.getModel().ySpeed *=  -1;
+            }
+            yCheck = ball.getModel().getY();
+        }
+//        if (ball.getModel().getY() > 522){
+//            if (ball.getModel().getY() == yCheck){
+//                ball.getModel().ySpeed *=  -1;
+//            }
+//            yCheck = ball.getModel().getY();
+//        }
         if (ball.getModel().getY() > 555){
             score1++;
             ball.getModel().set(bot.getModel().getX(), bot.getModel().getY()+70);
@@ -66,6 +80,18 @@ public class PlayWithBotState extends GameState  {
         if (ball.getModel().ySpeed < 0){
             bot.getModel().xSpeed = ball.getModel().xSpeed;
         }
+        if (ball.getModel().getY() < 100 & ball.getModel().getX() > 410){
+            bot.getModel().xSpeed = ball.getModel().xSpeed;
+            if (bot.getModel().xSpeed < 0) bot.getModel().xSpeed*=-1;
+        }
+        if (ball.getModel().getY() < 550 & ball.getModel().getX() < 110){
+            bot.getModel().xSpeed = ball.getModel().xSpeed;
+            if (bot.getModel().xSpeed > 0) bot.getModel().xSpeed*=-1;
+        }
+        if ((score1 == 10) || (score2 == 10)){
+            sManager.setState(StateManager.gameOverState);
+        }
+
 
 
 

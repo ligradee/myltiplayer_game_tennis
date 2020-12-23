@@ -12,6 +12,7 @@ public class StateManager {
     public static final int infoState = 2;
     public static final int playWithBotState = 3;
     public static final int pauseState = 4;
+    public static final int gameOverState = 5;
 
     public StateManager() {
         gameStates = new ArrayList<GameState>();
@@ -22,6 +23,7 @@ public class StateManager {
         gameStates.add(new InfoState(this));
         gameStates.add(new PlayWithBotState(this));
         gameStates.add(new PauseState(this));
+        gameStates.add(new GameOverState(this));
 
     }
     public void setState(int s) {

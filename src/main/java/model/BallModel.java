@@ -38,6 +38,8 @@ public class BallModel {
     }
 
     public void set(int x1, int y1) {
+        System.out.println(x);
+        System.out.println(y);
         if ((xSpeed > 0) & (x < 500)) {
             x += xSpeed;
             hitBoxBall.x += xSpeed;
