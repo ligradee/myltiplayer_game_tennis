@@ -24,6 +24,13 @@ public class BallModel{
 
         hitBoxBall = new Rectangle(this.x, this.y, width, height);
     }
+    public void reconstructor(int x, int y)
+    {
+        this.y = y-20;
+        this.x = x+40;
+
+        hitBoxBall = new Rectangle(this.x, this.y, width, height);
+    }
 
     public int getX() {
         return x;
