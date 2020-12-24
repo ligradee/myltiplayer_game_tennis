@@ -54,7 +54,6 @@ public class PlayWithBotState extends GameState {
             }
         }
         if (ball.getModel().getY() < 7){
-            System.out.println("meow");
             if (ball.getModel().getY() == yCheck){
                 ball.getModel().ySpeed *=  -1;
             }

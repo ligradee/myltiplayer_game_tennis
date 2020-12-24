@@ -9,15 +9,18 @@ import java.util.*;
 
 public class PlayWithRealPlayer extends GameState {
     private Background bg;
-    private PlayerState player;
+    private PlayerState player1;
+    private PlayerState player2;
+    private Ball ball;
+
     private ServerSocket client;
     private String name;
     private String freeTables = "";
     private int currentChoice = 0;
     private ArrayList<String> tableOptions;
     private int flag;
-
-
+    private String nameMain;
+    private boolean ballFlag = false;
 
     public PlayWithRealPlayer(StateManager s) {
         this.sManager = s;
@@ -34,40 +37,74 @@ public class PlayWithRealPlayer extends GameState {
         catch (Exception e){
             e.printStackTrace();
         }
-        if (sManager.game == 1){
-            setFlag(1);
-        }
-        player = new PlayerState(1);
+        System.out.println(sManager.game);
+
+        setFlag(sManager.game);
+        player1 = new PlayerState(0);
+        player2 = new PlayerState(1);
+
+
 
     }
 
     public void init() {
+        flag = sManager.game;
+        if(flag == 1) {
+            nameMain = "@new";
+        }
+        if(flag == 0) {
+            nameMain ="@add";
+        }
         tableOptions.clear();
         freeTables = "";
-        while(!freeTables.contains("Table")) {
-            client.send("@getTables");
-            freeTables = client.receivedMessage;
+
+        freeTables = client.receivedMessage;
+        client.send(nameMain + " X " + String.valueOf(player1.getModel().xSpeed));
+        if (!freeTables.equals("") & freeTables.length() > 3){
+            if ((freeTables.contains("X") == true) & (!freeTables.split(" ")[0].trim().equals(nameMain))){
+                player2.getModel().xSpeed = Integer.parseInt(freeTables.split(" ")[2].trim());
+            }
         }
+
         String[] buf = freeTables.split("&");
         tableOptions.addAll(Arrays.asList(buf));
         tableOptions.remove(tableOptions.size()-1);
         tableOptions.add("+ New table");
     }
 
-    public void init(int mod) {
-
-    }
 
     public void update() {
-        player.getModel().set();
-        if(client.receivedMessage.trim().equals("newTable"))
-            init();
-        sManager.setState(StateManager.playGameState);
+        player1.getModel().set();
+        player2.getModel().set();
+        flag = sManager.game;
+        if(flag == 1) {
+            nameMain = "@new";
+        }
+        if(flag == 0) {
+            nameMain ="@add";
+        }
+        tableOptions.clear();
+        freeTables = "";
+
+        freeTables = client.receivedMessage;
+        client.send(nameMain + " X " + String.valueOf(player1.getModel().xSpeed));
+        if (!freeTables.equals("") & freeTables.length() > 3){
+            if ((freeTables.contains("X") == true) & (!freeTables.split(" ")[0].trim().equals(nameMain))){
+                player2.getModel().xSpeed = Integer.parseInt(freeTables.split(" ")[2].trim());
+            }
+        }
+
+        String[] buf = freeTables.split("&");
+        tableOptions.addAll(Arrays.asList(buf));
+        tableOptions.remove(tableOptions.size()-1);
+        tableOptions.add("+ New table");
+        //sManager.setState(StateManager.playGameState);
     }
 
     public void draw(Graphics2D g) {
         bg.draw(g);
-        player.draw(g);
+        player1.draw(g);
+        player2.draw(g);
 
     }
 
@@ -79,7 +116,9 @@ public class PlayWithRealPlayer extends GameState {
         this.flag = flag;
         if(flag == 1) {
             client.send("@new");
-            init();
+        }
+        if(flag == 0) {
+            client.send("@add");
         }
     }
 
@@ -88,27 +127,18 @@ public class PlayWithRealPlayer extends GameState {
             sManager.setState(StateManager.pauseState);
         }
         if(key == KeyEvent.VK_RIGHT) {
-            player.getModel().xSpeed = 3;
-//            if (ball.getModel().flag == false){
-//                ball.getModel().xSpeed = 3;
-//            }
-
+            player1.getModel().xSpeed = 3;
         }
         if(key == KeyEvent.VK_LEFT) {
-            player.getModel().xSpeed = -3;
-//            if (ball.getModel().flag == false){
-//                ball.getModel().xSpeed = -3;
-//            }
-
+            player1.getModel().xSpeed = -3;
+            if (key == KeyEvent.VK_ENTER)
+                select();
         }
-        if(key == KeyEvent.VK_ENTER)
-            select();
-
     }
 
     public void keyReleased(int key) {
         if(key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_LEFT) {
-            player.getModel().xSpeed = 0;
+            player1.getModel().xSpeed = 0;
         }
     }
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class StateManager {
     private final ArrayList<GameState> gameStates;
     private int currentState;
-    public  int game = 0;
+    public int game = 1;
 
     public static final int menuState = 0;
     public static final int playState = 1;

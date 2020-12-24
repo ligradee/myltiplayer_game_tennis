@@ -16,7 +16,12 @@ public class PlayerState {
     public PlayerState(int playerNumber) {
         try {
 
-           person = ImageIO.read(getClass().getResourceAsStream("/person.png"));
+            if (playerNumber == 0){
+                person = ImageIO.read(getClass().getResourceAsStream("/person2.png"));
+            }
+            if (playerNumber == 1){
+                person = ImageIO.read(getClass().getResourceAsStream("/person.png"));
+            }
 
         }
         catch(Exception e) {
