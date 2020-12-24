@@ -22,6 +22,7 @@ public class PlayWithRealPlayer extends GameState {
     private String nameMain;
     private String ballFlag = "false";
     private int start = 0;
+    private int score1 = 0, score2 = 0;
 
     public PlayWithRealPlayer(StateManager s) {
         this.sManager = s;
@@ -80,7 +81,8 @@ public class PlayWithRealPlayer extends GameState {
         freeTables = client.receivedMessage;
         //System.out.println(freeTables);
         if (flag == 1) {
-            client.send(nameMain + " X " + String.valueOf(player1.getModel().xSpeed) + " " + ball.getModel().flag + " " + String.valueOf(ball.getModel().getX()) + " " + String.valueOf(ball.getModel().getY()));
+            client.send(nameMain + " X " + String.valueOf(player1.getModel().xSpeed) + " " + ball.getModel().flag + " " + String.valueOf(ball.getModel().getX()) + " " + String.valueOf(ball.getModel().getY()) + " " + score1 + " " + score2 );
+            //client.send("score " + score1 + " " + score2);
         }
         else{
             client.send(nameMain + " X " + String.valueOf(player1.getModel().xSpeed));
@@ -88,17 +90,18 @@ public class PlayWithRealPlayer extends GameState {
         ball.getModel().set(player1.getModel().getX(), player1.getModel().getY());
         if (!freeTables.equals("")){
             if ((freeTables.contains("X") == true) & (!freeTables.split(" ")[0].trim().equals(nameMain))){
-                //System.out.println("meow");
                 player2.getModel().xSpeed = - Integer.parseInt(freeTables.split(" ")[2].trim());
                 if (flag == 0){
                     ball.getModel().set2(495 - Integer.parseInt(freeTables.split(" ")[4].trim()), 600 -Integer.parseInt(freeTables.split(" ")[5].trim()));
+                    score1 = Integer.parseInt(freeTables.split(" ")[7].trim());
+                    score2 = Integer.parseInt(freeTables.split(" ")[6].trim());
                 }
 
-
             }
-
         }
-
+//        if (ball.getModel().flag == false){
+//            ball.getModel().set2(player1.getModel().getX(), player1.getModel().getY());
+//        }
 
         String[] buf = freeTables.split("&");
         tableOptions.addAll(Arrays.asList(buf));
@@ -116,7 +119,17 @@ public class PlayWithRealPlayer extends GameState {
                 ball.getModel().ySpeed = ball.getModel().ySpeed * -1;
             }
         }
-        //client.send("ball " + String.valueOf(ball.getModel().flag) + " " + String.valueOf(ball.getModel().xSpeed)+ " " + String.valueOf(ball.getModel().ySpeed));
+
+        if (ball.getModel().getY() > 555){
+            score1++;
+            ball.getModel().ySpeed = -5;
+            ball.getModel().xSpeed = 3;
+        }
+        if (ball.getModel().getY() < 0){
+            score2++;
+        }
+
+
     }
 
     public void draw(Graphics2D g) {
@@ -124,6 +137,10 @@ public class PlayWithRealPlayer extends GameState {
         player1.draw(g);
         player2.draw(g);
         ball.draw(g);
+        String scorePlayer2 = String.valueOf(score1) + " : " +  String.valueOf(score2);
+        String scorePlayer1 = String.valueOf(score2) + " : " +  String.valueOf(score1);
+        g.drawString(scorePlayer2, 270, 30);
+        g.drawString(scorePlayer1, 270, 660);
 
     }
 
@@ -147,18 +164,17 @@ public class PlayWithRealPlayer extends GameState {
         }
         if(key == KeyEvent.VK_RIGHT) {
             player1.getModel().xSpeed = 3;
+
+
         }
         if(key == KeyEvent.VK_LEFT) {
             player1.getModel().xSpeed = -3;
-            if (key == KeyEvent.VK_ENTER)
-                select();
         }
         if(key == KeyEvent.VK_SPACE) {
             ballFlag = "true";
             ball.getModel().flag = true;
             ball.getModel().ySpeed = -5;
             ball.getModel().xSpeed = 3;
-            //client.send("ball " + String.valueOf(ball.getModel().flag) + " " + String.valueOf(ball.getModel().xSpeed)+ " " + String.valueOf(ball.getModel().ySpeed));
         }
     }
 
