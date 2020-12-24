@@ -79,4 +79,14 @@ public class BallModel{
         }
     }
 
+    public void set2(int x1, int y1) {
+        y = y1 - 20;
+        x = x1 + 40;
+        hitBoxBall.x = x;
+        hitBoxBall.y = y;
+        ySpeed = 0;
+        xSpeed = 0;
+    }
+
+
 }

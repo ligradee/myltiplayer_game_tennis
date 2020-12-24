@@ -6,7 +6,7 @@ import java.util.BitSet;
 
 public class PlayerModel{
 
-    public int x, y, width = 150, height = 100;
+    public int x, y, width = 110, height = 50;
     public int xSpeed = 0;
     public Rectangle hitBoxPlayer;
 

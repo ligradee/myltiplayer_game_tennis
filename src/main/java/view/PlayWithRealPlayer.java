@@ -59,13 +59,13 @@ public class PlayWithRealPlayer extends GameState {
         player2.getModel().set();
 
         if (start == 0){
-            if (flag ==0){
+            if (flag == 0){
                 ball.getModel().reconstructor(player2.getModel().getX(), player2.getModel().getY()+70);
             }
 
             start++;
         }
-        ball.getModel().set(player1.getModel().getX(), player1.getModel().getY());
+
         if(flag == 1) {
             nameMain = "@new";
 
@@ -78,25 +78,27 @@ public class PlayWithRealPlayer extends GameState {
         freeTables = "";
 
         freeTables = client.receivedMessage;
-        client.send(nameMain + " X " + String.valueOf(player1.getModel().xSpeed));
-
+        //System.out.println(freeTables);
+        if (flag == 1) {
+            client.send(nameMain + " X " + String.valueOf(player1.getModel().xSpeed) + " " + ball.getModel().flag + " " + String.valueOf(ball.getModel().getX()) + " " + String.valueOf(ball.getModel().getY()));
+        }
+        else{
+            client.send(nameMain + " X " + String.valueOf(player1.getModel().xSpeed));
+        }
+        ball.getModel().set(player1.getModel().getX(), player1.getModel().getY());
         if (!freeTables.equals("")){
             if ((freeTables.contains("X") == true) & (!freeTables.split(" ")[0].trim().equals(nameMain))){
                 //System.out.println("meow");
-                player2.getModel().xSpeed = Integer.parseInt(freeTables.split(" ")[2].trim());
-            }
-            if (freeTables.contains("ball") == true){
-                ballFlag = freeTables.split(" ")[1];
-                if (ballFlag.equals("true")){
-                    ball.getModel().xSpeed = 3;
-                    ball.getModel().ySpeed = - 5;
+                player2.getModel().xSpeed = - Integer.parseInt(freeTables.split(" ")[2].trim());
+                if (flag == 0){
+                    ball.getModel().set2(495 - Integer.parseInt(freeTables.split(" ")[4].trim()), 600 -Integer.parseInt(freeTables.split(" ")[5].trim()));
                 }
-                else{
-                    ball.getModel().xSpeed = 0;
-                    ball.getModel().ySpeed = 0;
-                }
+
+
             }
+
         }
+
 
         String[] buf = freeTables.split("&");
         tableOptions.addAll(Arrays.asList(buf));
