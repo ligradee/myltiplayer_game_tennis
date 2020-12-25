@@ -17,6 +17,7 @@ public class StateManager {
     public static final int gameOverState = 5;
     public static final int playGameState = 6;
     public static final int botMenuState = 7;
+    public static final int botBossState = 8;
 
     public StateManager() throws IOException {
         gameStates = new ArrayList<GameState>();
@@ -30,6 +31,7 @@ public class StateManager {
         gameStates.add(new GameOverState(this));
         gameStates.add(new PlayWithRealPlayer(this));
         gameStates.add(new BotPlayState(this));
+        gameStates.add(new PlayWithBotBossState(this));
     }
     public void setState(int s) {
         currentState = s;

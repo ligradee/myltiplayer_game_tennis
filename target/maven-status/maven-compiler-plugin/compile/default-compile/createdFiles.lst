@@ -20,6 +20,7 @@ manage/Main.class
 view/GameOverState.class
 view/Ball.class
 network/GameServer.class
+view/PlayWithBotBossState.class
 model/PlayerModel.class
 view/PlayWithRealPlayer.class
 view/PlayWithBotState.class

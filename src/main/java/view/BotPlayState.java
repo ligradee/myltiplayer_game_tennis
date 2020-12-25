@@ -61,7 +61,7 @@ public class BotPlayState extends GameState {
 
         }
         if(currentState == 1) {
-            sManager.setState(StateManager.playWithBotState);
+            sManager.setState(StateManager.botBossState);
 
         }
 
