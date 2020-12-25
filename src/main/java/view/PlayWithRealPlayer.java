@@ -113,11 +113,14 @@ public class PlayWithRealPlayer extends GameState {
 
         if (ball.getModel().getY() > 555){
             score1++;
-            ball.getModel().ySpeed = -5;
-            ball.getModel().xSpeed = 3;
+            ball.getModel().flag = false;
         }
         if (ball.getModel().getY() < 0){
             score2++;
+        }
+
+        if (ball.getModel().flag == false){
+
         }
 
         if ((score1 == 10) || (score2 == 10)){

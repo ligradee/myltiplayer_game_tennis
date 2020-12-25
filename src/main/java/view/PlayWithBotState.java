@@ -71,9 +71,6 @@ public class PlayWithBotState extends GameState {
             score1++;
             ///
             ball.getModel().set(bot.getModel().getX(), bot.getModel().getY()+70);
-            ball.getModel().flag = true;
-            ball.getModel().ySpeed = -5;
-            ball.getModel().xSpeed = 3;
             ///
         }
         if (ball.getModel().getY() < 0){
