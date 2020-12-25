@@ -6,7 +6,7 @@ import manage.StateManager;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class PlayState extends GameState {
+public class BotPlayState extends GameState {
 
     private Background bg;
     private Font font;
@@ -14,13 +14,12 @@ public class PlayState extends GameState {
 
 
     private String[] variants = {
-            "New game",
-            "Join the game",
-            "Play with bot",
+            "play with baby-bot",
+            "play with bot-boss",
             "Back"
     };
 
-    public PlayState(StateManager sManager) {
+    public BotPlayState(StateManager sManager) {
         this.sManager = sManager;
 
         try {
@@ -51,26 +50,22 @@ public class PlayState extends GameState {
             else {
                 g.setColor(Color.WHITE);
             }
-            g.drawString(variants[i], 220, 280 + i * 45);
+            g.drawString(variants[i], 180, 280 + i * 45);
         }
 
     }
 
     private void select() {
         if(currentState == 0) {
-            this.sManager.game = 1;
-            sManager.setState(StateManager.playGameState);
+            sManager.setState(StateManager.playWithBotState);
 
         }
         if(currentState == 1) {
-            this.sManager.game = 0;
-            sManager.setState(StateManager.playGameState);
+            sManager.setState(StateManager.playWithBotState);
 
         }
+
         if(currentState == 2) {
-            sManager.setState(StateManager.botMenuState);
-        }
-        if(currentState == 3) {
             sManager.setState(StateManager.menuState);
         }
     }

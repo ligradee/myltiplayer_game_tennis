@@ -1,3 +1,4 @@
+view/BotPlayState.class
 network/ServerSocket$1.class
 view/PlayerState.class
 model/BallModel.class
