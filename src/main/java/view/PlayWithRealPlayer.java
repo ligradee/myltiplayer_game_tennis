@@ -78,8 +78,13 @@ public class PlayWithRealPlayer extends GameState {
         else{
             client.send(nameMain + " X " + String.valueOf(player1.getModel().xSpeed));
         }
+
+
         ball.getModel().set(player1.getModel().getX(), player1.getModel().getY());
+
+
         if (!freeTables.equals("")){
+
             if ((freeTables.contains("X") == true) & (!freeTables.split(" ")[0].trim().equals(nameMain))){
                 player2.getModel().xSpeed = - Integer.parseInt(freeTables.split(" ")[2].trim());
                 if (flag == 0){
@@ -88,6 +93,14 @@ public class PlayWithRealPlayer extends GameState {
                     score2 = Integer.parseInt(freeTables.split(" ")[6].trim());
                 }
 
+
+            }
+            //System.out.println(freeTables);
+            if(freeTables.contains("space")){
+                //System.out.println("meow space");
+                ball.getModel().flag = true;
+                ball.getModel().ySpeed = 5;
+                ball.getModel().xSpeed = -3;
             }
         }
 //        if (ball.getModel().flag == false){
@@ -113,10 +126,13 @@ public class PlayWithRealPlayer extends GameState {
 
         if (ball.getModel().getY() > 555){
             score1++;
-            ball.getModel().flag = false;
+
         }
         if (ball.getModel().getY() < 0){
             score2++;
+            ball.getModel().flag = false;
+            ball.getModel().set2(player2.getModel().getX(), player2.getModel().getY()+70);
+
         }
 
         if (ball.getModel().flag == false){
@@ -172,6 +188,9 @@ public class PlayWithRealPlayer extends GameState {
             ball.getModel().flag = true;
             ball.getModel().ySpeed = -5;
             ball.getModel().xSpeed = 3;
+            if (ball.getModel().getY() == 530){
+                client.send(nameMain + " space ");
+            }
         }
     }
 

@@ -57,9 +57,9 @@ public class GameServer {
                        // System.out.println(server.message);
                         if (server.message.indexOf(" ") != -1){
                             server.player1 = server.message.split(" ")[0];
-                            System.out.println(server.player1);
+                            //System.out.println(server.player1);
                             String message = "@" + server.message.split(" ")[1];
-                            System.out.println(message);
+                            //System.out.println(message);
                             if (server.users.size() > 0) {
                                 int eq = 0;
                                 for (int i = 0; i < server.users.size(); i++) {
@@ -101,6 +101,10 @@ public class GameServer {
 
                         if (server.message.indexOf("X") != -1){
                             sendData= server.message.getBytes();
+                        }
+                        if (server.message.contains("space")){
+                            sendData= server.message.getBytes();
+                            //System.out.println(server.message);
                         }
                         if(server.message.contains("@new")){
                             if (!server.message.equals("")) {

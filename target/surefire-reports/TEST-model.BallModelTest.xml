@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="model.BotModelTest" time="0.001" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="model.BallModelTest" time="0.017" tests="6" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="14"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -54,7 +54,10 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="58.0"/>
   </properties>
-  <testcase name="set" classname="model.BotModelTest" time="0"/>
-  <testcase name="getX" classname="model.BotModelTest" time="0"/>
-  <testcase name="getY" classname="model.BotModelTest" time="0"/>
+  <testcase name="reconstructor" classname="model.BallModelTest" time="0.003"/>
+  <testcase name="set" classname="model.BallModelTest" time="0"/>
+  <testcase name="getX" classname="model.BallModelTest" time="0.001"/>
+  <testcase name="getY" classname="model.BallModelTest" time="0.001"/>
+  <testcase name="set2" classname="model.BallModelTest" time="0"/>
+  <testcase name="setFlag" classname="model.BallModelTest" time="0"/>
 </testsuite>
