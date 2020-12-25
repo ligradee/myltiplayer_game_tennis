@@ -59,18 +59,22 @@ public class PlayWithBotState extends GameState {
             }
             yCheck = ball.getModel().getY();
         }
+        ///
 //        if (ball.getModel().getY() > 522){
 //            if (ball.getModel().getY() == yCheck){
 //                ball.getModel().ySpeed *=  -1;
 //            }
 //            yCheck = ball.getModel().getY();
 //        }
+        ///
         if (ball.getModel().getY() > 550){
             score1++;
-//            ball.getModel().set(bot.getModel().getX(), bot.getModel().getY()+70);
-//            ball.getModel().flag = true;
-//            ball.getModel().ySpeed = -5;
-//            ball.getModel().xSpeed = 3;
+            ///
+            ball.getModel().set(bot.getModel().getX(), bot.getModel().getY()+70);
+            ball.getModel().flag = true;
+            ball.getModel().ySpeed = -5;
+            ball.getModel().xSpeed = 3;
+            ///
         }
         if (ball.getModel().getY() < 0){
             score2++;
@@ -89,8 +93,6 @@ public class PlayWithBotState extends GameState {
         if ((score1 == 10) || (score2 == 10)){
             sManager.setState(StateManager.gameOverState);
         }
-
-
 
 
     }

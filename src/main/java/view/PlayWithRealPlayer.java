@@ -59,14 +59,6 @@ public class PlayWithRealPlayer extends GameState {
         player1.getModel().set();
         player2.getModel().set();
 
-        if (start == 0){
-            if (flag == 0){
-                ball.getModel().reconstructor(player2.getModel().getX(), player2.getModel().getY()+70);
-            }
-
-            start++;
-        }
-
         if(flag == 1) {
             nameMain = "@new";
 
@@ -82,7 +74,6 @@ public class PlayWithRealPlayer extends GameState {
         //System.out.println(freeTables);
         if (flag == 1) {
             client.send(nameMain + " X " + String.valueOf(player1.getModel().xSpeed) + " " + ball.getModel().flag + " " + String.valueOf(ball.getModel().getX()) + " " + String.valueOf(ball.getModel().getY()) + " " + score1 + " " + score2 );
-            //client.send("score " + score1 + " " + score2);
         }
         else{
             client.send(nameMain + " X " + String.valueOf(player1.getModel().xSpeed));
@@ -129,6 +120,9 @@ public class PlayWithRealPlayer extends GameState {
             score2++;
         }
 
+        if ((score1 == 10) || (score2 == 10)){
+            sManager.setState(StateManager.gameOverState);
+        }
 
     }
 
