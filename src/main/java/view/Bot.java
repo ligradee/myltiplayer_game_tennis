@@ -20,7 +20,7 @@ public class Bot {
         catch(Exception e) {
             e.printStackTrace();
         }
-        model = new BotModel(2);
+        model = new BotModel();
 
     }
 

@@ -11,7 +11,7 @@ public class BotModel {
     public int xSpeed = 0;
     public Rectangle hitBox;
 
-    public BotModel(int num){
+    public BotModel(){
         this.y = 0;
         this.x = 225;
 

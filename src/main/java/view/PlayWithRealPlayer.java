@@ -57,6 +57,7 @@ public class PlayWithRealPlayer extends GameState {
 
     public void update() throws IOException {
         player1.setForm(sManager.personFormState);
+        player2.setForm(3);
         flag = sManager.game;
         player1.getModel().set();
         player2.getModel().set();
