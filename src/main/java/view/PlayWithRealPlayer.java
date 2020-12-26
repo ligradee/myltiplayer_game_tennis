@@ -5,6 +5,7 @@ import manage.StateManager;
 import network.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.*;
 
 public class PlayWithRealPlayer extends GameState {
@@ -54,7 +55,8 @@ public class PlayWithRealPlayer extends GameState {
 
     }
 
-    public void update() {
+    public void update() throws IOException {
+        player1.setForm(sManager.personFormState);
         flag = sManager.game;
         player1.getModel().set();
         player2.getModel().set();

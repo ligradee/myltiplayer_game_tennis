@@ -69,7 +69,11 @@ public class GamePanel extends JPanel
 
             start = System.nanoTime();
 
-            update();
+            try {
+                update();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             draw();
             drawToScreen();
 
@@ -89,7 +93,7 @@ public class GamePanel extends JPanel
 
     }
 
-    private void update() {
+    private void update() throws IOException {
         sManager.update();
     }
 

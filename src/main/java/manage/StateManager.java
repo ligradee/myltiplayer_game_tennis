@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class StateManager {
     private final ArrayList<GameState> gameStates;
     private int currentState;
+    public int personFormState = 0;
     public int game = 1;
 
     public static final int menuState = 0;
@@ -40,7 +41,7 @@ public class StateManager {
         gameStates.get(currentState).init();
     }
 
-    public void update() {
+    public void update() throws IOException {
         gameStates.get(currentState).update();
     }
 

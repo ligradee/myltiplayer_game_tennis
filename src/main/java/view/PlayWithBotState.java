@@ -4,6 +4,7 @@ import manage.StateManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 public class PlayWithBotState extends GameState {
     private Background bg;
@@ -41,7 +42,8 @@ public class PlayWithBotState extends GameState {
     }
 
     @Override
-    public void update() {
+    public void update() throws IOException {
+        person.setForm(sManager.personFormState);
         person.getModel().set();
         bot.getModel().set();
         ball.getModel().set(person.getModel().getX(), person.getModel().getY());

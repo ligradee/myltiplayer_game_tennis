@@ -86,7 +86,8 @@ public class SettingsState extends GameState {
 
     private void select() {
         if(currentState == 0) {
-            sManager.setState(StateManager.playWithBotState);
+            sManager.personFormState = currentStatePerson;
+            System.out.println(sManager.personFormState);
         }
         if(currentState == 1) {
             sManager.setState(StateManager.menuState);
