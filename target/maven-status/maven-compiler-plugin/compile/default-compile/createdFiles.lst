@@ -1,4 +1,5 @@
 view/BotPlayState.class
+view/SettingsState.class
 network/ServerSocket$1.class
 view/PlayerState.class
 model/BallModel.class

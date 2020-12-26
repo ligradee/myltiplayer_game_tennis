@@ -63,7 +63,7 @@ public class MyMenu extends GameState {
             this.sManager.setState(StateManager.playState);
         }
         if(currentState == 1) {
-
+            this.sManager.setState(StateManager.settingsState);
         }
         if(currentState == 2) {
             this.sManager.setState(StateManager.infoState);
